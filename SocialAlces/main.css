@@ -1,0 +1,43 @@
+body{
+    background-color: white;
+}
+
+.navbarCont{
+    margin-left: 7rem;
+    margin-right: 9rem;
+    margin-top:0.5rem;
+    
+    
+}
+
+.barraBusqueda{
+    width:35rem;
+    margin-right: 5rem;
+}
+
+
+.centro{
+    display: flex;
+    align-self: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.re{
+    margin-top:-20rem;
+    margin-left:-46rem;
+    width: 12rem;
+}
+
+.fot{
+    margin-top: 14rem;
+    margin-left: 16rem;
+    width: 12rem;
+}
+
+
+
+.medio{
+    align-self: center;
+    margin-top: 1rem;
+}
