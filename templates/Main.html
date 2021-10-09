@@ -33,11 +33,12 @@
     </div>
     <div class="centro">
         <img class="medio" src="images/main.png" width="80%" height="80%">
-        
-            <button type="button" class="btn btn-light re">Registrarse</button>
+          <form action="{{ url_for('signup')}}">
+            <button type="submit" class="btn btn-light re">Registrarse</button>
+          </form>
             <button type="button" class="btn btn-light fot">Ver fotos nuevas</button>
-       
-        
+          
+      
 
     </div>   
 </body>
