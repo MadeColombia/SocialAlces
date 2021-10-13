@@ -6,7 +6,7 @@ body{
 .container {
     display:flex;
     flex-direction:row;
-    justify-content: space-between;
+    justify-content: flex-end;
     position: absolute;
     
 }
@@ -44,10 +44,15 @@ body{
     margin-left: 5rem;
 }
 
+.res{
+    margin-left: -2rem;
+}
+
 .re{
     margin-top: 1rem;
-    margin-left:7rem ;
+    margin-left:2rem ;
     margin-bottom: 2rem;
+    width: 15rem;
 }
 
 .form-control{
@@ -56,7 +61,7 @@ body{
 }
 
 #o{
-    margin-left: 8.5rem;
+    margin-left: 7.5rem;
 }
 
 .tex{
