@@ -1,0 +1,25 @@
+body{
+}
+
+.alce{
+    width:100%;
+}
+
+.carta{
+    display: flex;
+    flex-direction: row;
+}
+
+.nombre{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size:small;
+}
+
+.perfil{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.2rem;
+    margin-right: 5rem;
+}
