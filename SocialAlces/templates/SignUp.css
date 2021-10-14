@@ -7,7 +7,7 @@ body{
     display:flex;
     flex-direction:row;
     justify-content: flex-end;
-    position: absolute;
+    
     
 }
 
@@ -19,8 +19,8 @@ body{
 .info{
     background:white;
     border-radius:35px;
-    padding-bottom: 5.15rem;
-    padding-left: 8rem;
+    padding-bottom: 5.4rem;
+    padding-left: 10.5rem;
     padding-right: 5rem;
     margin-right: -5rem;
     
@@ -29,8 +29,9 @@ body{
 
 
 .title{
-    margin-top:5rem;
+    margin-top:6.4rem;
     font-weight: bold;
+    font-size: 3rem;
     
 }
 
@@ -53,6 +54,7 @@ body{
     margin-left:2rem ;
     margin-bottom: 2rem;
     width: 15rem;
+    
 }
 
 .form-control{

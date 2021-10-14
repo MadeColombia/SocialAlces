@@ -7,12 +7,12 @@ body{
     display:flex;
     flex-direction:row;
     justify-content: flex-end;
-    position: absolute;
-    
+    position: fixed;
+
 }
 
 .alce{
-    margin-left: -2rem;
+    
     width: 58%;
 }
 
@@ -29,7 +29,7 @@ body{
 
 
 .title{
-    margin-top:3.7rem;
+    margin-top:5rem;
     font-weight: bold;
     
 }
@@ -53,7 +53,6 @@ body{
     margin-left:2rem ;
     margin-bottom: 2rem;
     width: 15rem;
-    
 }
 
 .form-control{
