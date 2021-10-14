@@ -16,17 +16,17 @@ body{
 .informacion{
     background:white;
     border-radius:35px;
-    padding-bottom: 5.15rem;
-    padding-left: 8rem;
-    padding-right: 5rem;
-    margin-right: -5rem;
+    padding-bottom: 7rem;
+    padding-left: 9rem;
+    padding-right: 4rem;
+    margin-right: -10rem;
     
    
 }
 
 
 .title{
-    margin-top:5rem;
+    margin-top:7rem;
     font-weight: bold;
     
 }
