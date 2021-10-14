@@ -1,0 +1,70 @@
+body{
+    background-image: url(../images/social.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+}
+.container {
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    position: absolute;
+    
+}
+
+.alce{
+    margin-left: -2rem;
+    width: 58%;
+}
+
+.info{
+    background:white;
+    border-radius:35px;
+    padding-bottom: 5.15rem;
+    padding-left: 8rem;
+    padding-right: 5rem;
+    margin-right: -5rem;
+    
+   
+}
+
+
+.title{
+    margin-top:5rem;
+    font-weight: bold;
+    
+}
+
+.botonera{
+    margin-top:2rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.rol{
+    margin-left: 5rem;
+}
+
+.res{
+    margin-left: -2rem;
+}
+
+.re{
+    margin-top: 1rem;
+    margin-left:2rem ;
+    margin-bottom: 2rem;
+    width: 15rem;
+}
+
+.form-control{
+    margin-top: 1rem;
+    margin-bottom: 1rem;  
+}
+
+#o{
+    margin-left: 7.5rem;
+}
+
+.tex{
+    font-size:12px;
+}
+
