@@ -1,7 +1,7 @@
 .navbarCont{
     background-color: black;
-    margin-left: 7rem;
-    margin-right: 9rem;
+    margin-left: 8rem;
+    margin-right: 8rem;
     margin-top:0.5rem;
     padding: 0.5rem;
     border-radius: 16px;
@@ -11,13 +11,14 @@
 
 .mas{
     position:absolute;
-    margin-left:66.5rem;
-    margin-top: 32rem;
+    margin-left:71rem;
+    margin-top: 35rem;
 }
 
 .mainfeed{
     margin-top:4rem;
     margin-bottom: 2rem;
+    margin-left: 11rem;
 }
 
 .re{
@@ -26,15 +27,15 @@
 }
 
 .barraBusqueda{
-    width:35rem;
+    width:40rem;
     margin-left:-4rem;
 }
 .botonera{
     margin-right: 1rem;
 }
 .im{
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
 }
 
 .alce{
@@ -69,6 +70,7 @@
 .posts{
     display: flex;
     flex-direction: row;
+    align-self: center;
 }
 
 .columnA{
@@ -79,5 +81,5 @@
     display: flex;
     align-self: center;
     flex-direction: column;
-    margin-left: 5.8rem;
+    
 }
