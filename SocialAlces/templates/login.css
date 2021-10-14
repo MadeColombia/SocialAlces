@@ -8,15 +8,12 @@ body{
     flex-direction:row;
     justify-content: flex-end;
     position: fixed;
-
-}
-
-.alce{
     
-    width: 58%;
+
 }
 
-.info{
+
+.informacion{
     background:white;
     border-radius:35px;
     padding-bottom: 5.15rem;
