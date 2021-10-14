@@ -1,0 +1,83 @@
+.navbarCont{
+    background-color: black;
+    margin-left: 7rem;
+    margin-right: 9rem;
+    margin-top:0.5rem;
+    padding: 0.5rem;
+    border-radius: 16px;
+    padding: -0.5rem;
+    
+}
+
+.mas{
+    position:absolute;
+    margin-left:66.5rem;
+    margin-top: 32rem;
+}
+
+.mainfeed{
+    margin-top:4rem;
+    margin-bottom: 2rem;
+}
+
+.re{
+    background-color: aqua;
+    padding: -0.5rem;
+}
+
+.barraBusqueda{
+    width:35rem;
+    margin-left:-4rem;
+}
+.botonera{
+    margin-right: 1rem;
+}
+.im{
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.alce{
+    width:100%;
+}
+
+.carta{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.rounded-3{
+    margin: 0.5rem;
+    
+}
+
+.nombre{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size:small;
+}
+
+.perfil{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.2rem;
+    margin-right: 5rem;
+}
+
+.posts{
+    display: flex;
+    flex-direction: row;
+}
+
+.columnA{
+    margin-top: 5rem;
+}
+
+.containera{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    margin-left: 5.8rem;
+}
