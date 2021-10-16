@@ -4,15 +4,32 @@ from flask.globals import request
 from flask_mysqldb import MySQL
 import pandas as pd
 
-app = Flask(__name__)
-
+app = Flask(__name__,
+            static_url_path='', 
+            static_folder='templates',
+            template_folder='templates')
 user_list = pd.DataFrame({'nombre':['diego','ethan','carolina','yendi','nellys'], 'email':['diego@email.com','ethan@email.com','carolina@email.com','yendi@email.com','nellys@email.com'], 'contraseña': ['123','234','456','789','246']})
 
 
-@app.route('/home', methods = ['POST','GET'])
-def home():
+@app.route('/', methods = ['POST','GET'])
 
-    return render_template('Main.html')
+def home():
+    if request.method=='GET':
+ 
+        return render_template('Main.html')
+    elif request.method == 'POST':
+        if 'register' in request.form:
+        
+            
+            return render_template('Signup.html')
+        elif 'login' in request.form:
+            return render_template('login.html')
+
+
+    
+
+
+  
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -65,13 +82,6 @@ def admin():
 
 
 
-
-#Actualizando contactos provenientes del formulario de edit_contact
-@app.route('/poster')
-def update_contact():
-
-
-        return redirect(url_for('Main'))
 
 
 #Eliminar un registro con el ingreso de un parametro id proveniente desde index.html

@@ -2,10 +2,11 @@
 <html>
 <head>
     <meta charset='utf-8'>
+    
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Main</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='styles/main.css', v=0.01)}}">
     <script src='main.js'></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 </head>
@@ -33,11 +34,11 @@
     </div>
     <div class="centro">
         <img class="medio" src="../images/main.png" width="80%" height="80%">
+          <form action = "#" method='POST'>
+              <button type="submit" class="btn btn-light re" name = "register"   href="signup">Registrarse</button>
+              <button type="submit" class="btn btn-light fot" name = "login" href="login">Inicio Sesion</button>
         
-            <button type="button" class="btn btn-light re">Registrarse</button>
-            <button type="button" class="btn btn-light fot">Ver fotos nuevas</button>
-       
-        
+          </form>
 
     </div>   
 </body>
