@@ -21,9 +21,9 @@ def home():
         if 'register' in request.form:
         
             
-            return render_template('Signup.html')
+            return  redirect(url_for('signup'))
         elif 'login' in request.form:
-            return render_template('login.html')
+            return redirect(url_for('login'))
 
 
     
@@ -77,6 +77,7 @@ def signup():
 
 @app.route('/admin')
 def admin():
+  
    
     return render_template('admin.html')
 
