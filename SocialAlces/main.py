@@ -1,7 +1,21 @@
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask.globals import request
+import sqlite3
 
+# conexion =sqlite3.connect("pwd.db")
+# cursor = conexion.cursor()
+# cursor.execute("SELECT * FROM TABLA ")
+# personas = cursor.fetchall()
+# for persona in personas:
+# 	print(persona)
+# conexion.close()
+# cursor.execute("INSERT INTO TABLA VALUES ('', '', '')")
+# conexion.commit()
+# conexion.close()
+# cursor.execute("UPDATE PERSONAS SET edad =  where nombre = ''")
+# conexion.commit()
+# conexion.close()
 import pandas as pd
 
 app = Flask(__name__,
