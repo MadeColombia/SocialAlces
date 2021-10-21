@@ -62,7 +62,12 @@ def feed():
 
 @app.route('/passwordRecovery')
 def recovery():
-    return render_template('passwordRecovery.html')
+    if request.method == 'POST':
+        mail = request.form['mail']
+        # conexion = connect("pwd.db")
+        # cursor = conexion.cursor()
+        # cursor.execute('SELECT contraseña FROM TABLA WHERE email = ?', email))
+        return render_template('passwordRecovery.html', tables=[user_list.to_html(classes='data')],titles = user_list.columns.values)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
