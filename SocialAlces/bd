@@ -1,0 +1,15 @@
+CREATE TABLE 'usuarios' (
+	'id' INT(5) NOT NULL AUTO_INCREMENT,
+	'nombre' VARCHAR(20),
+	'email' VARCHAR(50),
+	PRIMARY KEY ('id')
+);
+
+
+
+CREATE TABLE 'publicaciones' (
+	'id' INT(5) NOT NULL AUTO_INCREMENT,
+	'nombre' VARCHAR(20),
+	'publicacion' VARCHAR(50),
+	FOREIGN KEY ('id')
+);
