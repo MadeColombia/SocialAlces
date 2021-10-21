@@ -90,6 +90,9 @@ def admin():
 
         if email in user_list.values:
             list = ['removido','removido','removido']
+            # conexion = connect("pwd.db")
+            # cursor = conexion.cursor()
+            # cursor.execute('DELETE * FROM TABLA WHERE VALUES (?, ?, ?)', (nombre, email, contraseña,))
             user_list.loc[user_list['email'] == email] = list
             
             return redirect(url_for('login'))
@@ -109,6 +112,9 @@ def publicacion():
                 request.form['agregar']
 
                 list = [nombre, publicacion]
+                # conexion = connect("pwd.db")
+                # cursor = conexion.cursor()
+                # cursor.execute('INSERT INTO TABLA VALUES (?, ?, ?)', (nombre, email, contraseña,))
                 publicaciones.loc[len(user_list)] = list
 
                 print(publicaciones)
@@ -119,6 +125,9 @@ def publicacion():
 
                 request.form['remover']
                 list = ['removido','removido']
+                # conexion = connect("pwd.db")
+                # cursor = conexion.cursor()
+                # cursor.execute('DELETE * FROM TABLA WHERE VALUES (?, ?, ?)', (nombre, email, contraseña,))
                 publicaciones.loc[publicaciones['publicacion'] == publicacion]= list
                 print(publicaciones)
                 return redirect(url_for('login'))
@@ -126,6 +135,9 @@ def publicacion():
                 request.form['agregar']
 
                 list = [nombre, publicacion]
+                # conexion = connect("pwd.db")
+                # cursor = conexion.cursor()
+                # cursor.execute('INSERT INTO TABLA VALUES (?, ?, ?)', (nombre, email, contraseña,))
                 publicaciones.loc[len(user_list)] = list
 
                 print(publicaciones)
