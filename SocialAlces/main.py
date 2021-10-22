@@ -3,13 +3,6 @@ from flask.globals import request
 import sqlite3
 
 
-conexion =sqlite3.connect("AlcesDatabase.db")
-cursor = conexion.cursor()
-cursor.execute('SELECT * FROM usuarios WHERE id_usuario=?', (1,))
-data=cursor.fetchall()
-for x in data:
-    print(x)
-conexion.commit()
 
 import pandas as pd
 
@@ -44,13 +37,13 @@ def login():
     elif request.method == 'POST':
         email = request.form["mail"]
         contraseña = request.form["contraseña"]
-        conexion =sqlite3.connect("AlcesDatabase.db")
+        conexion = sqlite3.connect("AlcesDatabase.db")
         cursor = conexion.cursor()
-        cursor.execute('SELECT * FROM usuarios WHERE email=? and contraseña=?', (email,contraseña,))
-        data=cursor.fetchall()
+        cursor.execute('SELECT * FROM usuarios WHERE email=? and contraseña=?', (email, contraseña,))
+        data = cursor.fetchall()
         for x in data:
-            if len(x)>0:
-            
+            if len(x) > 0:
+
                 return redirect(url_for('feed'))
             else:
                 return render_template('login.html')
@@ -69,10 +62,14 @@ def feed():
 def recovery():
     if request.method == 'POST':
         mail = request.form['mail']
-        # conexion = connect("pwd.db")
-        # cursor = conexion.cursor()
-        # cursor.execute('SELECT contraseña FROM TABLA WHERE email = ?', email))
-        return render_template('passwordRecovery.html', tables=[user_list.to_html(classes='data')],titles = user_list.columns.values)
+        conexion = sqlite3.connect("AlcesDatabase.db")
+        cursor = conexion.cursor()
+        cursor.execute('SELECT contraseña FROM usuarios WHERE email = ?', mail,)
+        data = cursor.fetchall()
+        for i in data:
+            x = i
+            return render_template('passwordRecovery.html', tables=[x.to_html(classes='data')],
+                               titles=user_list.columns.values)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -83,12 +80,8 @@ def signup():
         contraseña = request.form['contraseña']
         conexion = sqlite3.connect("AlcesDatabase.db")
         cursor = conexion.cursor()
-        cursor.execute('INSERT INTO usuarios (nombre, email, contraseña) VALUES (?, ?, ?)',(nombre, email, contraseña,))
-        
-        cursor.execute('SELECT * FROM usuarios')
-        data=cursor.fetchall()
-        for x in data:
-            print(x)
+        cursor.execute('INSERT INTO usuarios (nombre, email, contraseña) VALUES (?, ?, ?)',
+                       (nombre, email, contraseña,))
         conexion.commit()
         return redirect(url_for('login'))
     else:
@@ -101,13 +94,17 @@ def admin():
 
         email = request.form['email']
 
-        if email in user_list.values:
-            list = ['removido','removido','removido']
-            # conexion = connect("pwd.db")
-            # cursor = conexion.cursor()
-            # cursor.execute('DELETE * FROM TABLA WHERE VALUES (?, ?, ?)', (nombre, email, contraseña,))
-            user_list.loc[user_list['email'] == email] = list
-            
+        conexion = sqlite3.connect("AlcesDatabase.db")
+        cursor = conexion.cursor()
+        cursor.execute('SELECT * FROM usuarios WHERE email = ?', email)
+        data = cursor.fetchall()
+        for x in data:
+            if len(x) > 0:
+
+                cursor.execute('DELETE FROM usuarios WHERE email = ?', email)
+                conexion.commit()
+                return redirect(url_for('feed'))
+
             return redirect(url_for('login'))
 
     return render_template('admin.html')
@@ -117,43 +114,45 @@ def admin():
 @app.route('/publicacion', methods=['GET', 'POST'])
 def publicacion():
     if request.method == 'POST':
-        nombre = request.form['nombre']
+        #nombre = request.form['nombre']
         publicacion = request.form['publicacion']
-        if publicacion not in publicaciones.values:
-            print(publicaciones)
-            try:
-                request.form['agregar']
+        conexion = sqlite3.connect("AlcesDatabase.db")
+        cursor = conexion.cursor()
+        cursor.execute('SELECT * FROM comentarios WHERE texto = ?', publicacion,)
+        data = cursor.fetchall()
+        print('ok')
+        for x in data:
+            print(len(x))
+            if len(x) < 1:
 
-                list = [nombre, publicacion]
-                # conexion = connect("pwd.db")
-                # cursor = conexion.cursor()
-                # cursor.execute('INSERT INTO TABLA VALUES (?, ?, ?)', (nombre, email, contraseña,))
-                publicaciones.loc[len(user_list)] = list
+                try:
+                    request.form['agregar']
 
-                print(publicaciones)
-            except:
-                print('no se encontro publicacion')
-        elif publicacion in publicaciones.values:
-            try:
 
-                request.form['remover']
-                list = ['removido','removido']
-                # conexion = connect("pwd.db")
-                # cursor = conexion.cursor()
-                # cursor.execute('DELETE * FROM TABLA WHERE VALUES (?, ?, ?)', (nombre, email, contraseña,))
-                publicaciones.loc[publicaciones['publicacion'] == publicacion]= list
-                print(publicaciones)
-                return redirect(url_for('login'))
-            except:
-                request.form['agregar']
+                    conexion = sqlite3.connect("AlcesDatabase.db")
+                    cursor = conexion.cursor()
+                    cursor.execute('INSERT INTO comentarios (texto) VALUES (?)', publicacion)
+                    conexion.commit()
 
-                list = [nombre, publicacion]
-                # conexion = connect("pwd.db")
-                # cursor = conexion.cursor()
-                # cursor.execute('INSERT INTO TABLA VALUES (?, ?, ?)', (nombre, email, contraseña,))
-                publicaciones.loc[len(user_list)] = list
+                except:
+                    print('no se encontro publicacion')
+            else:
+                try:
 
-                print(publicaciones)
+                    request.form['remover']
+
+                    conexion = sqlite3.connect("AlcesDatabase.db")
+                    cursor = conexion.cursor()
+                    cursor.execute('DELETE FROM comentarios WHERE VALUES (?)', (publicacion,))
+                    conexion.commit()
+                    return redirect(url_for('login'))
+                except:
+                    request.form['agregar']
+
+                    conexion = sqlite3.connect("AlcesDatabase.db")
+                    cursor = conexion.cursor()
+                    cursor.execute('INSERT INTO comentarios (texto) VALUES (?)', publicacion,)
+                    conexion.commit()
 
     return render_template('PubDetallada.html')
 
