@@ -1,15 +1,16 @@
-
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask.globals import request
 import sqlite3
 
-# #def consultar():
-#     conexion =sqlite3.connect("pwd.db")
-#     cursor = conexion.cursor()
-#     cursor.execute('SELECT * FROM TABLA WHERE id=?', (informacion,))
-#     data=cursor.fetchall()
-#     for x in data:
-#
+
+conexion =sqlite3.connect("AlcesDatabase.db")
+cursor = conexion.cursor()
+cursor.execute('SELECT * FROM usuarios WHERE id_usuario=?', (1,))
+data=cursor.fetchall()
+for x in data:
+    print(x)
+conexion.commit()
+
 import pandas as pd
 
 app = Flask(__name__,
@@ -43,12 +44,16 @@ def login():
     elif request.method == 'POST':
         email = request.form["mail"]
         contraseña = request.form["contraseña"]
-        if email and contraseña in user_list.values:
-            print(email, contraseña)
-            print(user_list)
-            return redirect(url_for('feed'))
-        else:
-            return render_template('login.html')
+        conexion =sqlite3.connect("AlcesDatabase.db")
+        cursor = conexion.cursor()
+        cursor.execute('SELECT * FROM usuarios WHERE email=? and contraseña=?', (email,contraseña,))
+        data=cursor.fetchall()
+        for x in data:
+            if len(x)>0:
+            
+                return redirect(url_for('feed'))
+            else:
+                return render_template('login.html')
 
     return render_template('login.html')
 
@@ -76,12 +81,15 @@ def signup():
         nombre = request.form['nombre']
         email = request.form['email']
         contraseña = request.form['contraseña']
-        # conexion = connect("pwd.db")
-        # cursor = conexion.cursor()
-        # cursor.execute('INSERT INTO TABLA VALUES (?, ?, ?)', (nombre, email, contraseña,))
-        list = [nombre, email, contraseña]
-        user_list.loc[len(user_list)] = list
-        print(user_list)
+        conexion = sqlite3.connect("AlcesDatabase.db")
+        cursor = conexion.cursor()
+        cursor.execute('INSERT INTO usuarios (nombre, email, contraseña) VALUES (?, ?, ?)',(nombre, email, contraseña,))
+        
+        cursor.execute('SELECT * FROM usuarios')
+        data=cursor.fetchall()
+        for x in data:
+            print(x)
+        conexion.commit()
         return redirect(url_for('login'))
     else:
         return render_template('Signup.html')
