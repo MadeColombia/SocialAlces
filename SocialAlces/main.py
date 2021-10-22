@@ -41,8 +41,8 @@ def login():
 
             if bcrypt.checkpw(contraseña.encode("utf-8"),x[0]):
                 return redirect(url_for('feed'))
-        # else:
-        #     return render_template('login.html')
+            else:
+                return render_template('login.html')
 
     return render_template('login.html')
 
