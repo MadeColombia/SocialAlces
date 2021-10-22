@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask.globals import request
 import sqlite3
 import re
-
+import bcrypt
 
 
 
@@ -35,14 +35,14 @@ def login():
         contraseña = request.form["contraseña"]
         conexion = sqlite3.connect("AlcesDatabase.db")
         cursor = conexion.cursor()
-        cursor.execute('SELECT * FROM usuarios WHERE email=? and contraseña=?', (email, contraseña,))
-        data = cursor.fetchall()
-        for x in data:
-            if len(x) > 0:
+        cursor.execute('SELECT contraseña FROM usuarios WHERE email=?', (email,))
+        for x in cursor.fetchall():
+            print(x[0])
 
+            if bcrypt.checkpw(contraseña.encode("utf-8"),x[0]):
                 return redirect(url_for('feed'))
-            else:
-                return render_template('login.html')
+        # else:
+        #     return render_template('login.html')
 
     return render_template('login.html')
 
@@ -83,10 +83,14 @@ def signup():
                 render_template('Signup.html')
             else:
                 break
+
+        salt = bcrypt.gensalt()
+        pw_hash = bcrypt.hashpw(contraseña.encode("utf-8"),salt)
+
         conexion = sqlite3.connect("AlcesDatabase.db")
         cursor = conexion.cursor()
         cursor.execute('INSERT INTO usuarios (nombre, email, contraseña) VALUES (?, ?, ?)',
-                       (nombre, email, contraseña,))
+                       (nombre, email, pw_hash,))
         conexion.commit()
         return redirect(url_for('login'))
     else:
