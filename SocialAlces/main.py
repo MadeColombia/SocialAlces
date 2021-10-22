@@ -4,17 +4,13 @@ import sqlite3
 
 
 
-import pandas as pd
+
 
 app = Flask(__name__,
             static_url_path='',
             static_folder='templates',
             template_folder='templates')
-user_list = pd.DataFrame({'nombre': ['diego', 'ethan', 'carolina', 'yendi', 'nellys'],
-                          'email': ['diego@email.com', 'ethan@email.com', 'carolina@email.com', 'yendi@email.com',
-                                    'nellys@email.com'], 'contraseña': ['123', '234', '456', '789', '246']})
-publicaciones = pd.DataFrame({'nombre': ['diego', 'ethan', 'carolina', 'yendi', 'nellys'],
-                              'publicacion': ['asdfkljas', 'sdf', 'wer', 'dsfasf', '435']})
+
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -68,8 +64,7 @@ def recovery():
         data = cursor.fetchall()
         for i in data:
             x = i
-            return render_template('passwordRecovery.html', tables=[x.to_html(classes='data')],
-                               titles=user_list.columns.values)
+            return render_template('passwordRecovery.html')
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -110,7 +105,7 @@ def admin():
     return render_template('admin.html')
 
 
-# Eliminar un registro con el ingreso de un parametro id proveniente desde index.html
+
 @app.route('/publicacion', methods=['GET', 'POST'])
 def publicacion():
     if request.method == 'POST':
@@ -120,10 +115,10 @@ def publicacion():
         cursor = conexion.cursor()
         cursor.execute('SELECT * FROM comentarios WHERE texto = ?', publicacion,)
         data = cursor.fetchall()
-        print('ok')
+
         for x in data:
-            print(len(x))
-            if len(x) < 1:
+            print('ok')
+            if len(x) == False:
 
                 try:
                     request.form['agregar']
